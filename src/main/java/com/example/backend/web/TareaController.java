@@ -14,6 +14,15 @@ public class TareaController {
 
     private final TareaService tareaService;
 
+    @GetMapping("/personas")
+    public ResponseEntity<?> getPersonas() {
+        return ResponseEntity.ok(this.tareaService.obtenerPersonas());
+    }
+
+    @GetMapping("/estados")
+    public ResponseEntity<?> getEstados() {
+        return ResponseEntity.ok(this.tareaService.obtenerEstados());
+    }
     @GetMapping
     public ResponseEntity<?> obtenerTareas() {
         return ResponseEntity.ok(tareaService.obtenerTareas());

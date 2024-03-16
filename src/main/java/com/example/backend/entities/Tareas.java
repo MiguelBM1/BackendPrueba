@@ -19,7 +19,7 @@ public class Tareas {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id_tarea")
-    private Integer idTarea;
+    private int idTarea;
 
     @Column(name = "nombre")
     private String nombre;
@@ -31,13 +31,11 @@ public class Tareas {
     private LocalDate fechaFinalizacion;
 
     @ManyToOne
-    @JoinColumn(name = "estado_id", insertable = false, updatable = false)
-    @JsonBackReference
+    @JoinColumn(name = "estado_id", referencedColumnName = "id_estado")
     private Estados estados;
 
     @ManyToOne
-    @JoinColumn(name = "persona_id", insertable = false, updatable = false)
-    @JsonBackReference
+    @JoinColumn(name = "persona_id", referencedColumnName = "id_persona")
     private Personas personas;
 
 

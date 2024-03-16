@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "personas")
 @NoArgsConstructor
@@ -16,7 +18,7 @@ public class Personas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_persona")
-    private Integer idPersona;
+    private int idPersona;
 
     @Column(name = "nombre")
     private String nombre;
@@ -24,15 +26,14 @@ public class Personas {
     @Column(name = "codigo")
     private String codigo;
 
-    @Column(name = "departamento_id")
-    private Integer departamentoId;
-
     @ManyToOne
-    @JoinColumn(name = "departamento_id", insertable = false, updatable = false)
-    @JsonBackReference
+    @JoinColumn(name = "departamento_id", referencedColumnName = "id_departamento")
     private Departamentos departamentos;
 
     public Personas(Integer id) {
         this.idPersona = id;
     }
+
+    @OneToMany(mappedBy = "personas")
+    private Set<Tareas> tareas;
 }

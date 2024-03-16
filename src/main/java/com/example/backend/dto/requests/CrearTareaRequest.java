@@ -3,6 +3,7 @@ package com.example.backend.dto.requests;
 import com.example.backend.entities.Estados;
 import com.example.backend.entities.Personas;
 import com.example.backend.entities.Tareas;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,9 +19,11 @@ import java.time.LocalDate;
 public class CrearTareaRequest {
 
     @NotEmpty(message = "El nombre de la tarea no puede estar vacío")
+    @Max(value = 25, message = "El nombre de la tarea no puede tener más de 25 caracteres")
     private String nombre;
 
     @NotEmpty(message = "La descripción de la tarea no puede estar vacía")
+    @Max(value = 250, message = "La descripción de la tarea no puede tener más de 250 caracteres")
     private String descripcion;
 
     @NotEmpty(message = "La fecha de finalización de la tarea no puede estar vacía")
